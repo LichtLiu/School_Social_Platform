@@ -1,15 +1,9 @@
-from django.shortcuts import render
-from .forms import TeacherSignUpForm
+from django.shortcuts import render, redirect
+from user.forms import TeacherSignUpForm
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
-from .models import User
+from user.models import User
 # Create your views here.
-
-def index(request):
-    return render(request, 'index.html')
-
-def signup(request):
-    return render(request, 'user/signup.html')
 
 class TeacherSignUpView(CreateView):
     model = User
@@ -19,4 +13,8 @@ class TeacherSignUpView(CreateView):
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'teacher'
         return super().get_context_data(**kwargs)
- 
+
+    def form_valid(self, form):
+        user = form.save()
+        #login(self.request, user)
+        return redirect('index')

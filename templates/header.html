@@ -36,10 +36,10 @@
                     {% endif %}
 
                     {% if user.is_authenticated %}
-                        <p class="pt-3">Logged in as <strong>{{ user.username }}</strong>. <a href="{% url 'logout' %}">Log out</a>.</p>
+                        <p class="pt-3">Logged in as <strong>{{ user.username }}</strong>. <a href="#">Log out</a>.</p>
                     {% else %}
                         <li class="nav-item pl-1">
-                            <a href="#" class="btn btn-light" role="button">Log in</a>
+                            <a href="{% url 'login' %}" class="btn btn-light" role="button">Log in</a>
                         </li>
                         <li class="nav-item pl-1">
                             <a href="{% url 'signup' %}" class="btn btn-primary" role="button">Sign up</a>
