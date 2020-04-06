@@ -14,8 +14,8 @@ class Subject(models.Model):
         return self.name
 
 class Student(models.Model):
-    user = models.OneToOneField(User, primary_key=True ,on_delete=models.CASCADE)
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.user.username
