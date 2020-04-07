@@ -1,6 +1,6 @@
 from user.forms import StudentSignUpForm
 from django.views.generic import CreateView
-
+from django.shortcuts import redirect
 from user.models import User
 
 class StudentSignUpView(CreateView):

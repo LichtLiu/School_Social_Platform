@@ -32,5 +32,5 @@ class StudentSignUpForm(UserCreationForm):
         user.is_student = True
         user.save()
         student = Student.objects.create(user=user)
-        student.subject.add(*self.cleaned_data.get('subject'))
+        #student.subject.add(*self.cleaned_data.get('subject'))
         return user
