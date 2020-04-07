@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#Custom auth settings
+# Custom auth settings
 
 AUTH_USER_MODEL = 'user.User'
 

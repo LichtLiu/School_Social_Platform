@@ -4,6 +4,7 @@ from django.db import transaction
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, Student, Subject
 
+
 class TeacherSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
@@ -32,5 +33,5 @@ class StudentSignUpForm(UserCreationForm):
         user.is_student = True
         user.save()
         student = Student.objects.create(user=user)
-        student.subject.add(*self.cleaned_data.get('subject'))
+        # student.subject.add(*self.cleaned_data.get('subject'))
         return user

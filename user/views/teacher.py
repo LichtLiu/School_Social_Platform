@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from user.forms import TeacherSignUpForm
+from django.contrib import auth
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 from user.models import User
 # Create your views here.
+
 
 class TeacherSignUpView(CreateView):
     model = User
@@ -16,5 +18,5 @@ class TeacherSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        auth.login(self.request, user)
         return redirect('index')
