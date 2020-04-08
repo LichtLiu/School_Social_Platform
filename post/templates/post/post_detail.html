@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class='container'>
+        <div class='row'>
+            <div class='col mt-3 left'>
+                <div class="card">
+                    <div class="card-body">
+                        <h1>{{ post.title }}</h1>
+                        <p class="text-muted">{{ post.author }} | {{ post.pub_date }}</p>
+                        <p class="card-text read-more-block">{{ post.content | linebreaks }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if post.comment %}
+        <div class='row'>
+            <h2>Comment</h2>
+                <div class='col mt-3 left'>
+                    {% for comment in post.comment.all %}
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="text-muted">{{ comment.user }} | {{ comment.pub_date }}</p>
+                            <p class="card-text"> {{ comment.comment | linebreaks }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

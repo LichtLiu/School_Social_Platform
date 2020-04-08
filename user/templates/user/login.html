@@ -13,24 +13,28 @@
       </button>
         </div>
     {% endif %}
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-8 col-12">
-                <h2>Log in</h2>
-                <form method="post" novalidate>
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ next }}">
-                    <div>
-                        {{ form.username.label_tag }}
-                        {{ form.username }}
+            <div class="col col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Log in</h2>
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ next }}">
+                            <div>
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                            </div>
+                            <div>
+                                {{ form.password.label_tag }}
+                                {{ form.password }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Log in</button>
+                        </form>
+                        <p><a href="#">Lost password?</a></p>
                     </div>
-                    <div>
-                        {{ form.password.label_tag }}
-                        {{ form.password }}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </form>
-                <p><a href="#">Lost password?</a></p>
+                </div>
             </div>
         </div>
     </div>
