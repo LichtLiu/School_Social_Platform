@@ -18,6 +18,7 @@ from django.urls import path, include
 from user.views.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index, name='index'),
-    path('',include('user.urls')),
+    #path('',index, name='index'),
+    path('', include('user.urls')),
+    path('', include('post.urls')),
 ]

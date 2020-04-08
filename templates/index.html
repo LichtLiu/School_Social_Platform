@@ -1,4 +1,30 @@
 {% extends 'base.html' %}
+
 {% block content %}
-Welcome!!
+<div class='container-fluid'>
+    <div class='row'>
+        <!--Blog Entries Column-->
+        {% if user.is_authenticated %}
+            {% for post in blog_posts %}
+            <div class='col-md-8 mt-3 left'>
+                
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ post.title }}</h5>
+                      <p class="card-text">{{ post.content|slice:":200"}}...</p>
+                      <div class="text-muted"> pub_date {{ post.pub_date|date }}</div>
+                      <a href="#" class="btn btn-primary right">Go somewhere</a>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class='col-md-8 mt-3 center'>
+                <p>Please Login in to share your idea! </p>
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

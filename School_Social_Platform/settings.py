@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crispy_forms', 
 
     'user',
+    'post',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -117,8 +118,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
-
 USE_TZ = True
 
 
@@ -134,3 +133,7 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'index'
 
 LOGOUT_REDIRECT_URL = 'index'
+
+#DATE FORMAT setting
+USE_L10N = False
+DATE_FORMAT = 'Y-m-d'
