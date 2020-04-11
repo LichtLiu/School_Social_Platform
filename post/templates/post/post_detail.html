@@ -4,8 +4,8 @@
 
     <div class='container'>
         <div class='row'>
-            <div class='col mt-3 left'>
-                <div class="card">
+            <div class='col-md-8 mt-3 left'>
+                <div class="card mb-4">
                     <div class="card-body">
                         <h1>{{ post.title }}</h1>
                         <p class="text-muted">{{ post.author }} | {{ post.pub_date }}</p>
@@ -13,22 +13,26 @@
                     </div>
                 </div>
             </div>
+            {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
         </div>
-        {% if post.comment %}
-        <div class='row'>
-            <h2>Comment</h2>
-                <div class='col mt-3 left'>
-                    {% for comment in post.comment.all %}
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="text-muted">{{ comment.user }} | {{ comment.pub_date }}</p>
-                            <p class="card-text"> {{ comment.comment | linebreaks }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
     </div>
+        
+        <div class='container'>
+            <h2>Comment</h2>
+            <div class='col mt-3 left'>
+                {% for comment in post.comment.all %}
+                <div class="card">
+                    <div class="card-body">
+                        <p class="text-muted">{{ comment.user }} | {{ comment.pub_date }}</p>
+                        <p class="card-text"> {{ comment.comment | linebreaks }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                    <p class="text-muted"> No comment recently </p>
+                {% endfor %}
+            </div>
+        </div>
+        
+    
 
 {% endblock %}

@@ -4,7 +4,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-
+from django.contrib.auth.models import User
 from .models import Post
 from .forms import PostCreateForm
 
@@ -16,6 +16,18 @@ class PostList(ListView):
     queryset = Post.objects.all()
     template_name = 'index.html'
     context_object_name = 'blog_posts'
+
+# List all personal posts
+@login_required
+def userprofile(request):
+    user = request.user
+    user_posts = Post.objects.filter(author=user).order_by('-pub_date')
+    template_name = 'post/personal_post_list.html'
+    context = {
+        'user_posts':user_posts,
+        'user':user,
+    }
+    return render(request, template_name, context)
 
 
 # Display the specific post and post's comments
