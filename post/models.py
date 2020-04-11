@@ -21,6 +21,7 @@ class Post(models.Model):
     updated_on = models.DateField(auto_now=True)
     pub_date = models.DateField(auto_now_add=True)
     content = models.TextField()
+    tags = models.CharField(max_length=200)
     comment = models.ManyToManyField(Comment, blank=True)
 
     class Meta:

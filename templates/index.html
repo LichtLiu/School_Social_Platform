@@ -1,31 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class='container'>
-    <div class='row'>
-        <!--Blog Entries Column-->
-        {% if user.is_authenticated %}
+
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
             {% for post in blog_posts %}
-            <div class='col mt-3 left'>  
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                        <p class="card-text">{{ post.content|slice:":200"}}...</p>
-                        <div class="text-muted"> pub_date {{ post.pub_date|date }}</div>
-                        <a class="read-more" href="{% url 'post_detail' post.slug  %}">
-                            Read More <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </div>
-                  </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.pub_date}} </p>
+                    <p class="card-text">{{post.content|slice:":200" }}</p>
+                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
             </div>
             {% endfor %}
-        {% else %}
-            <div class='col-md-8 mt-3 center'>
-                <p>Please Login in to share your idea! </p>
-                <a href="{% url 'login' %}">Login</a>
-            </div>
-        {% endif %}
+        </div>
+        {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
     </div>
 </div>
 {% endblock %}

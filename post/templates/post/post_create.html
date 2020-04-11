@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{#{% load crispy_forms_tags %}#}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mt-3 left">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2>建立貼文</h2>
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            <div>
+                                {{form.as_p}}
+                            </div>
+                            <button type="submit" class="btn btn-primary">建立貼文</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+        </div>
+    </div>
+{% endblock %}
